@@ -369,6 +369,7 @@ describe FPM::Package::Deb do
       subject.attributes[:deb_user] = "root"
       subject.attributes[:deb_group] = "root"
       subject.category = "comm"
+      subject.dependencies << "lsb-base"
 
       subject.instance_variable_set(:@staging_path, staging_path)
 
@@ -416,11 +417,11 @@ describe FPM::Package::Deb do
     end # after
 
     it "it should output bit-for-bit identical packages" do
-      lamecmds = []
-      lamecmds << "ar" if not ar_cmd_deterministic?
-      lamecmds << "tar" if not tar_cmd_supports_sort_names_and_set_mtime?
-      if not lamecmds.empty?
-        skip("fpm searched for variants of #{lamecmds.join(", ")} that support(s) deterministic archives, but found none, so can't test reproducibility.")
+      cmds = []
+      cmds << "ar" if not ar_cmd_deterministic?
+      cmds << "tar" if not tar_cmd_supports_sort_names_and_set_mtime?
+      if not cmds.empty?
+        skip("fpm searched for variants of [#{cmds.join(", ")}] that support(s) deterministic archives, but found none, so can't test reproducibility.")
         return
       end
 
