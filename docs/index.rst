@@ -25,7 +25,7 @@ Table of Contents
 	contributing
 
 .. _Installation: /installation
-.. _Getting started: /getting-started
+.. _Getting started: /getting-started.html
 .. _CLI reference: /cli-reference
 .. _Contributing: /contributing
 .. _here: /changelog
